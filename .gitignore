@@ -2,6 +2,8 @@
 /*
 !/.gitignore
 !/Dockerfile
+!/LICENSE
+!/README.md
 
 !/nginx/
 /nginx/*
