@@ -11,3 +11,9 @@
 /scripts/*
 !/scripts/90-headscale-exporter.sh
 !/scripts/fetch.sh
+
+!/.github/
+/.github/*
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/docker.yml
