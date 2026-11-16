@@ -72,9 +72,9 @@ routes("primary";   .subnetRoutes),
 
 collect() {
   # Not piped directly: in a pipeline a curl failure would be masked by jq's exit status.
-  nodes="$(curl -fsS --max-time 5 \
-    -H "Authorization: Bearer ${HEADSCALE_API_KEY}" \
-    "${HEADSCALE_URL}/api/v1/node")"
+  # The header is fed on stdin (-H @-) so the API key never appears in curl's argv / ps.
+  nodes="$(printf 'Authorization: Bearer %s\n' "${HEADSCALE_API_KEY}" |
+    curl -fsS --max-time 5 -H @- "${HEADSCALE_URL}/api/v1/node")"
   printf '%s' "${nodes}" | jq -er "${JQ_PROGRAM}"
 }
 
